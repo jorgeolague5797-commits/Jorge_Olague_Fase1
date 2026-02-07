@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dbe0geyxp035t"]
+
+[ext_resource type="Script" uid="uid://ch45w72sjy1gy" path="res://sistema_solar.gd" id="1_1vq0n"]
+[ext_resource type="Texture2D" uid="uid://d0preja1xs0o7" path="res://sunround.png" id="1_tf3av"]
+[ext_resource type="PackedScene" uid="uid://j1rskfue3kjg" path="res://planeta.tscn" id="3_q03yg"]
+[ext_resource type="Texture2D" uid="uid://coexq5wa3rbcu" path="res://pngtree-mercury-planet-astronomy-planet-solar-system-planet-png-image_16117382.png" id="4_6vlqf"]
+[ext_resource type="Texture2D" uid="uid://bornphnm6cf0m" path="res://astronomical-planet-mars-on-transparent-background-free-png.webp" id="5_7ikrb"]
+
+[node name="Node2D" type="Node2D" unique_id=141578469]
+position = Vector2(0, -1)
+script = ExtResource("1_1vq0n")
+
+[node name="Sol - Node2D" type="Node2D" parent="." unique_id=515608920]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sol - Node2D" unique_id=792699167]
+position = Vector2(630, 353)
+texture = ExtResource("1_tf3av")
+
+[node name="Timer" type="Timer" parent="Sol - Node2D" unique_id=795215963]
+wait_time = 0.447
+autostart = true
+
+[node name="Planetas" type="Node2D" parent="." unique_id=16265135]
+
+[node name="Orbita1" type="Node2D" parent="Planetas" unique_id=1524122791]
+
+[node name="Planeta" parent="Planetas/Orbita1" unique_id=46197721 instance=ExtResource("3_q03yg")]
+position = Vector2(250, -50)
+
+[node name="Orbita2" type="Node2D" parent="Planetas" unique_id=1955464048]
+
+[node name="Planeta2" parent="Planetas/Orbita2" unique_id=2092692748 instance=ExtResource("3_q03yg")]
+position = Vector2(100, 400)
+
+[node name="Planeta tierra - Sprite2D" parent="Planetas/Orbita2/Planeta2" index="0" unique_id=2011692539]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_6vlqf")
+
+[node name="CollisionShape2D" parent="Planetas/Orbita2/Planeta2/Area2D" parent_id_path=PackedInt32Array(2092692748, 1351916806) index="0" unique_id=1475274160]
+scale = Vector2(0.7, 0.7)
+
+[node name="Orbita3" type="Node2D" parent="Planetas" unique_id=578893457]
+
+[node name="Planeta3" parent="Planetas/Orbita3" unique_id=421009266 instance=ExtResource("3_q03yg")]
+position = Vector2(-200, 0)
+
+[node name="Planeta tierra - Sprite2D" parent="Planetas/Orbita3/Planeta3" index="0" unique_id=2011692539]
+position = Vector2(-10.000015, 93)
+scale = Vector2(0.35714287, 0.36938775)
+texture = ExtResource("5_7ikrb")
+
+[node name="CollisionShape2D" parent="Planetas/Orbita3/Planeta3/Area2D" parent_id_path=PackedInt32Array(421009266, 1351916806) index="0" unique_id=1475274160]
+position = Vector2(-9, 92)
+scale = Vector2(0.8, 0.8)
+
+[connection signal="timeout" from="Sol - Node2D/Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Planetas/Orbita2/Planeta2"]
+[editable path="Planetas/Orbita3/Planeta3"]
